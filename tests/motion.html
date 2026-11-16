@@ -1,0 +1,33 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revisión de articulación — Chihuahua Burritas</title>
+<style>body{margin:16px;background:#b6c6b3;color:#192827;font:14px monospace}h1{font-size:20px}main{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}article{background:#e8edd7;border:1px solid #53685a;padding:8px}canvas{width:100%;image-rendering:pixelated}p{margin:4px 0}@media(max-width:700px){main{grid-template-columns:repeat(2,minmax(0,1fr))}}</style>
+<h1>Articulación: original · fase A · fase B</h1><p id="state"></p><main></main>
+<script type="module">
+// Development-only contact sheet: uses the same textures and update as combat.
+import * as THREE from 'three';
+import {loadPixelSprites,makePixelSprite,updatePixelDupla} from '../src/characters/pixelSprites.js';
+import {CHICKEN_SKINS,DOG_SKINS} from '../src/world/skins.js';
+await loadPixelSprites();
+const params=new URLSearchParams(location.search), kind=params.get('kind')??'chicken',sheet=params.get('sheet')??'extra', state=params.get('state')??'walk';
+if(params.has('large')) document.querySelector('main').style.gridTemplateColumns='repeat(2,minmax(0,1fr))';
+const skins=(kind==='chicken'?CHICKEN_SKINS:DOG_SKINS).filter(s=>(s.spriteAtlas??'base')===sheet);
+const camera=new THREE.PerspectiveCamera();camera.updateMatrixWorld();
+document.querySelector('#state').textContent=`${kind} · ${sheet} · ${state}`;
+for(const skin of skins){
+  const chicken=makePixelSprite('chicken',kind==='chicken'?skin.id:'clasica',2);
+  const dog=makePixelSprite('dog',kind==='dog'?skin.id:'clasico',1.6);
+  const dupla={chicken:{userData:{sprite:chicken}},dog:{userData:{sprite:dog,skin:kind==='dog'?skin:{}}},heading:Math.PI/2,speed:state==='walk'?8:0,alive:state!=='ko',airborne:state==='jump',braking:state==='brake',balance:state==='danger'?12:100,hitReaction:state==='hit'?.4:0,punchExt:state==='attack'?.9:0,punchTime:state==='attack'?.16:-1};
+  const sprite=kind==='chicken'?chicken:dog,source=sprite.userData.pixelCanvas.source;
+  const article=document.createElement('article'),title=document.createElement('p'),canvas=document.createElement('canvas');
+  title.textContent=skin.name??skin.id;canvas.width=540;canvas.height=190;
+  const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
+  const draw=(image,index)=>{const scale=Math.min(1,166/(source.width+16));const margin=image===source?0:8;ctx.drawImage(image,index*180+90-image.width*scale/2,12-margin*scale,image.width*scale,image.height*scale)};
+  draw(source,0);
+  for(const [index,time] of [Number(params.get('time')??.12),Number(params.get('time')??.12)+.30].entries()){
+    updatePixelDupla(dupla,camera,time,params.get('reduced')==='1',{winner:state==='win',time});
+    draw(sprite.material.map.image,index+1);
+  }
+  article.append(title,canvas);document.querySelector('main').append(article);
+}
+document.documentElement.dataset.visualFixture='ready';
+</script></html>

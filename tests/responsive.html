@@ -1,0 +1,10 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Revisión de resolución — Chihuahua Burritas</title>
+<style>html,body{margin:0;background:#253122}iframe{display:block;border:0}</style>
+<iframe title="Juego a la resolución de prueba"></iframe>
+<script>
+// A same-origin viewport fixture also works in browser hosts with fixed windows.
+const params=new URLSearchParams(location.search),frame=document.querySelector('iframe');
+frame.width=String(Math.max(320,Math.min(2560,Number(params.get('width'))||1440)));
+frame.height=String(Math.max(480,Math.min(1440,Number(params.get('height'))||900)));
+params.delete('width');params.delete('height');frame.src=`visual.html?${params}`;
+</script></html>

@@ -1,0 +1,74 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Chihuahua Burritas — revisión visual</title><body><script type="module">
+// Development-only fixture. Reuse the complete production DOM and entry point.
+const source = await (await fetch('../index.html')).text();
+const page = new DOMParser().parseFromString(source, 'text/html');
+document.body.replaceChildren(...[...page.body.childNodes].filter(node => node.nodeName !== 'SCRIPT'));
+await import('../src/main.js');
+const game = window.game;
+if (!game) throw new Error('Game did not initialize');
+const params = new URLSearchParams(location.search);
+if (params.get('state') !== 'menu') {
+  game.startMatch({ ...game.settings, mode: 'local', chicken: params.get('chicken') ?? 'gorda', dog: params.get('dog') ?? 'diva', p2Chicken: params.get('p2Chicken') ?? 'enana', p2Dog: params.get('p2Dog') ?? 'chispa' });
+  game.introTimer = 5.2;
+  game.updateIntro(0.016, 0.016);
+  for (const [index, dupla] of game.duplas.entries()) {
+    dupla.position.set(index === 0 ? -1.55 : 1.55, 0, 0);
+    dupla.velocity.set(0, 0, 0);
+    dupla.buckTimer = 0; dupla.vertical = 0; dupla.vy = 0; dupla.airborne = false;
+    dupla.heading = index === 0 ? Math.PI / 2 : -Math.PI / 2;
+    dupla.applyTransform();
+  }
+}
+for (const dupla of game.duplas) {
+  for (const model of [dupla.chicken, dupla.dog]) {
+    let voxelMeshes = 0;
+    model.traverse(node => { if (node.isMesh && node !== dupla.chickenParts.shadow) voxelMeshes++; });
+    console.assert(voxelMeshes === 0, `${model.name} still contains voxel meshes`);
+    console.assert(model.userData.sprite?.isSprite, `${model.name} missing sprite`);
+  }
+}
+if (['still','taunt','walk','jump','hit','danger','ko','attack','edge'].includes(params.get('state'))) {
+  game.ui.hideAnnounce();
+  if (params.get('state') === 'taunt') { game.state = 'ko'; game.koWinner = game.p1; }
+  const state = params.get('state');
+  for (const [index, dupla] of game.duplas.entries()) {
+    if (state === 'walk') dupla.velocity.set(index === 0 ? 7.5 : -7.5, 0, 0);
+    if (state === 'jump') { dupla.airborne = true; dupla.vertical = 0.6; dupla.vy = 3; }
+    if (state === 'hit') dupla.hitReaction = 0.4;
+    if (state === 'danger') dupla.balance = 18;
+    if (state === 'attack') { dupla.punchTime = 0.15; dupla.punchExt = 0.9; }
+    if (state === 'ko' && index === 1) dupla.alive = false;
+    if (state === 'edge') dupla.position.set(index === 0 ? -8.5 : 8.5, 0, index === 0 ? 3 : -3);
+    dupla.applyTransform();
+  }
+  game.reducedMotion = params.get('reduced') === '1';
+  game.cameraBlend = 1;
+  const fixedTime = params.has('time') ? Number(params.get('time')) : null;
+  game.update = (raw) => {
+    if (fixedTime !== null) game.clock = fixedTime;
+    else if (game.state !== 'paused') game.clock += raw;
+    game.updateCamera(0.016); game.renderScene();
+  };
+}
+game.renderScene();
+game.refreshHUD();
+if(params.get('animation')==='off') game.renderScene=()=>game.renderer.render(game.scene,game.camera);
+if (params.has('metrics')) {
+  const output = document.createElement('output');
+  output.id = 'motionReview';
+  output.style.cssText = 'position:fixed;bottom:44px;left:12px;background:#fff9db;color:#222;padding:6px;font:12px monospace;z-index:1000';
+  output.textContent = 'Midiendo 120 cuadros…';document.body.append(output);
+  const intervals = [], started = performance.now();let previous = started;
+  const maps = game.duplas.flatMap(d => [d.chicken.userData.sprite.material.map,d.dog.userData.sprite.material.map]);
+  const versions = maps.map(m => m.version);
+  const measure = now => {
+    intervals.push(now-previous);previous=now;
+    if(intervals.length<120) requestAnimationFrame(measure);
+    else {
+      const sorted=[...intervals].sort((a,b)=>a-b);
+      output.textContent=JSON.stringify({frames:120,seconds:Number(((now-started)/1000).toFixed(2)),p95ms:Number(sorted[114].toFixed(1)),uploads:maps.map((m,i)=>m.version-versions[i])});
+    }
+  };requestAnimationFrame(measure);
+}
+document.documentElement.dataset.visualFixture = 'ready';
+</script></body></html>

@@ -1,0 +1,33 @@
+{
+  "name": "chihuahua-burritas",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Brawler de fiesta en pixel art: chihuahuas montados en gallinas, mejor de tres rondas.",
+  "license": "MIT",
+  "author": "Nestor Peña",
+  "homepage": "https://neshack.github.io/chihuahua-burritas/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neshack/chihuahua-burritas.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "site": "npm run build && node scripts/build-site.mjs",
+    "test": "node tests/catalog.test.mjs && node tests/regeneration.test.mjs && node tests/pixel-animation.test.mjs && node tests/pixel-motion.test.mjs && node tests/pixel-expressions.test.mjs && node tests/pixel-rig.test.mjs && node tests/camera-framing.test.mjs && node tests/linux-executable.test.mjs",
+    "build:linux": "npm run build && node desktop/build-linux.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/nunito": "^5.3.0",
+    "@fontsource/lilita-one": "^5.3.0",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "vite": "^8.3.7"
+  }
+}

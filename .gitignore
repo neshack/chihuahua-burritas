@@ -1,0 +1,10 @@
+node_modules/
+dist/
+_site/
+.ejecutable-build/
+ejecutable/Chihuahua-Burritas
+ejecutable/*.zip
+.playwright-mcp/
+.DS_Store
+*.local
+*.log

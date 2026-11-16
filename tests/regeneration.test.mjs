@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import * as THREE from 'three';
+
+const context = { fillRect() {}, beginPath() {}, ellipse() {}, fill() {}, drawImage() {}, getImageData: () => ({ data: new Uint8Array([0, 0, 0, 255]) }) };
+globalThis.document = { createElement: () => ({ width: 1, height: 1, getContext: () => context, toDataURL: () => 'data:image/png;base64,' }) };
+globalThis.Image = class { width = 4; height = 2; async decode() {} };
+const { loadPixelSprites } = await import('../src/characters/pixelSprites.js');
+await loadPixelSprites();
+const { Dupla } = await import('../src/game/dupla.js');
+const game = { settings: { regeneration: false } };
+const fighter = new Dupla({ scene: new THREE.Scene(), game });
+fighter.reset({ balance: 50 });
+fighter.sinceDamage = 2;
+fighter.updateBalance(1);
+assert.equal(fighter.balance, 50, 'disabled passive recovery must not heal');
+fighter.applyCornBoost();
+assert.equal(fighter.balance, 50, 'disabled corn recovery must not heal');
+assert.ok(fighter.cornBoostTimer > 0, 'corn still grants turbo');
+game.settings.regeneration = true;
+fighter.sinceDamage = 2;
+fighter.updateBalance(1);
+assert.ok(fighter.balance > 50, 'enabled passive recovery heals');
+const beforeCorn = fighter.balance;
+fighter.applyCornBoost();
+assert.ok(fighter.balance > beforeCorn, 'enabled corn recovery heals');
+fighter.dispose();
+console.log('PASS: regeneration setting controls passive and corn healing while retaining turbo');

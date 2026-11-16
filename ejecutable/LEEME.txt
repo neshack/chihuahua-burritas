@@ -1,0 +1,16 @@
+CHIHUAHUA BURRITAS — LINUX
+
+Ejecuta Chihuahua-Burritas para abrir el juego en una ventana local.
+Si el administrador de archivos no permite abrirlo, abre una terminal en esta
+carpeta y ejecuta:
+
+    ./Chihuahua-Burritas
+
+No necesitas instalar Node.js ni conexión a Internet. Necesitas Linux x86-64,
+un entorno gráfico, WebGL y un navegador instalado. Chrome, Chromium y Brave
+se abren en una ventana de aplicación; si no están disponibles se usa el
+navegador predeterminado. En este último caso, ejecuta desde una terminal y
+pulsa Ctrl+C cuando termines.
+
+Haz clic para iniciar el audio. Pulsa M o usa el botón de sonido para silenciar.
+Controles: P1 WASD, Espacio y J; P2 flechas, Shift y Enter. Esc pausa.

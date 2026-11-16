@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chihuahua Burritas · Brawler de fiesta con gallinas y chihuahuas</title>
+    <meta
+      name="description"
+      content="Un chihuahua con guantes monta una gallina y pelea por el equilibrio del corral. Brawler de fiesta en pixel art, mejor de tres rondas, 32 personajes y arte generado por código."
+    />
+    <meta name="theme-color" content="#1c0f06" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href="https://neshack.github.io/chihuahua-burritas/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:site_name" content="Chihuahua Burritas" />
+    <meta property="og:title" content="Chihuahua Burritas · El corral de la fiesta" />
+    <meta
+      property="og:description"
+      content="Gallinas con actitud, chihuahuas con guantes. Un brawler de fiesta en pixel art: mejor de tres rondas, 32 personajes y cero arte externo."
+    />
+    <meta property="og:url" content="https://neshack.github.io/chihuahua-burritas/" />
+    <meta property="og:image" content="https://neshack.github.io/chihuahua-burritas/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chihuahua Burritas · El corral de la fiesta" />
+    <meta
+      name="twitter:description"
+      content="Un brawler de fiesta en pixel art: equilibrio en vez de vida, 32 personajes y mejor de tres rondas."
+    />
+    <meta name="twitter:image" content="https://neshack.github.io/chihuahua-burritas/assets/og.png" />
+    <link rel="preload" as="image" href="assets/hero-2600.webp" imagesrcset="assets/hero-1400.webp 1400w, assets/hero-2600.webp 2600w" imagesizes="100vw" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <header class="topbar" id="inicio">
+      <div class="topbar-inner">
+        <a class="brand" href="#inicio" aria-label="Chihuahua Burritas, inicio">
+          <span class="brand-star" aria-hidden="true">★</span>
+          <span class="brand-text">CHIHUAHUA <b>BURRITAS</b></span>
+        </a>
+        <div class="topbar-actions">
+          <nav class="nav" aria-label="Secciones del sitio">
+            <a href="#juego">El juego</a>
+            <a href="#galeria">Galería</a>
+            <a href="#reglas">Reglas</a>
+            <a href="#personajes">Personajes</a>
+            <a href="#tecnica">Bajo el capó</a>
+          </nav>
+          <a class="btn btn-small btn-primary" href="jugar/">Jugar</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-art" aria-hidden="true">
+          <picture>
+            <source media="(max-width: 640px)" srcset="assets/hero-1400.webp" />
+            <img src="assets/hero-2600.webp" alt="" width="2600" height="1459" fetchpriority="high" />
+          </picture>
+        </div>
+        <div class="hero-grain" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <h1 class="hero-title" id="hero-title">
+            <span class="hero-line hero-line-gold">CHIHUAHUA</span>
+            <span class="hero-line hero-line-green">BURRITAS</span>
+          </h1>
+          <p class="hero-lede">
+            Un chihuahua con guantes monta una gallina y pelea por no caerse del ruedo.
+            Mejor de tres rondas, contra la CPU o con dos jugadores.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-large" href="jugar/">Jugar ahora <span aria-hidden="true">➜</span></a>
+            <a class="btn btn-ghost btn-large" href="https://github.com/neshack/chihuahua-burritas/releases">Descargar para Linux</a>
+          </div>
+          <ul class="hero-meta" role="list">
+            <li>32 personajes</li>
+            <li>1 o 2 jugadores</li>
+            <li>Arte 100% generado</li>
+          </ul>
+        </div>
+        <p class="hero-stamp" aria-hidden="true">FIESTA<br />EDITION</p>
+      </section>
+
+      <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+          <span>EQUILIBRIO, NO VIDA</span><i>★</i>
+          <span>32 PERSONAJES</span><i>★</i>
+          <span>MEJOR DE 3</span><i>★</i>
+          <span>AUDIO SINTETIZADO</span><i>★</i>
+          <span>CORRAL 3D + SPRITES 2D</span><i>★</i>
+          <span>SIN ASSETS EXTERNOS</span><i>★</i>
+          <span>EQUILIBRIO, NO VIDA</span><i>★</i>
+          <span>32 PERSONAJES</span><i>★</i>
+          <span>MEJOR DE 3</span><i>★</i>
+          <span>AUDIO SINTETIZADO</span><i>★</i>
+          <span>CORRAL 3D + SPRITES 2D</span><i>★</i>
+          <span>SIN ASSETS EXTERNOS</span><i>★</i>
+        </div>
+      </div>
+
+      <section class="section section-cream" id="juego" aria-labelledby="juego-title">
+        <div class="wrap">
+          <header class="section-head reveal">
+            <h2 id="juego-title">Golpea, flanquea y no te caigas</h2>
+            <p class="lede">
+              Cada ronda es una pulseada sobre una gallina desbocada. Baja el equilibrio del rival a cero con el guante,
+              las vallas y los pisotones. Se lleva la fiesta quien gane dos de tres rondas.
+            </p>
+          </header>
+
+          <div class="pillars">
+            <article class="pillar reveal">
+              <span class="pillar-num" aria-hidden="true">100</span>
+              <h3>Equilibrio, no vida</h3>
+              <p>Los golpes, los rebotes y los choques restan equilibrio de 0 a 100. El HUD lo muestra en vivo, con aviso cuando estás al borde del KO.</p>
+            </article>
+            <article class="pillar reveal">
+              <span class="pillar-num" aria-hidden="true">×2</span>
+              <h3>Flanco y espalda</h3>
+              <p>Golpear de costado o por detrás duplica el daño y no devuelve retroceso. Si fallas, pierdes 10% y quedas vulnerable 1.5 segundos.</p>
+            </article>
+            <article class="pillar reveal">
+              <span class="pillar-num" aria-hidden="true">2</span>
+              <h3>Dos formas de jugar</h3>
+              <p>Contra la CPU o con dos jugadores en el mismo teclado. La dupla rival se sortea sola o la eliges tú antes de entrar.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-paper" id="galeria" aria-labelledby="galeria-title">
+        <div class="wrap">
+          <header class="section-head reveal">
+            <h2 id="galeria-title">El corral, de cerca</h2>
+            <p class="lede">Escenario tridimensional, luchadores en pixel art y un público que no se pierde el pleito.</p>
+          </header>
+
+          <figure class="shot shot-hero reveal">
+            <div class="shot-frame">
+              <img
+                src="assets/combate.webp"
+                alt="Combate en el ruedo: la dupla clásica y la dupla guerrera se enfrentan entre granos de maíz, con el HUD de equilibrio arriba"
+                width="1600"
+                height="900"
+                loading="lazy"
+              />
+            </div>
+            <figcaption><b>Vista de combate</b> El HUD muestra equilibrio, rondas ganadas y estado de cada dupla.</figcaption>
+          </figure>
+
+          <div class="shot-grid">
+            <figure class="shot reveal">
+              <div class="shot-frame">
+                <img
+                  src="assets/ruedo.webp"
+                  alt="El ruedo completo visto desde arriba, con vallas de madera, pacas de heno, gradas y papel picado"
+                  width="1440"
+                  height="900"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption><b>El ruedo completo</b> Vallas, pacas, gradas y papel picado en un solo escenario.</figcaption>
+            </figure>
+            <figure class="shot reveal">
+              <div class="shot-frame">
+                <img
+                  src="assets/menu.webp"
+                  alt="Pantalla de selección con las 16 gallinas a la izquierda y los 16 chihuahuas a la derecha"
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption><b>Selección de duplas</b> 16 gallinas y 16 chihuahuas, combinables antes de pelear.</figcaption>
+            </figure>
+            <figure class="shot reveal">
+              <div class="shot-frame">
+                <img
+                  src="assets/duplas.webp"
+                  alt="La gallina Gorda con la chihuahua Diva frente a la gallina Enana con el chihuahua Chispa"
+                  width="1280"
+                  height="720"
+                  loading="lazy"
+                />
+              </div>
+              <figcaption><b>Personalidades nuevas</b> Ocho gallinas y ocho jinetes extra, con armas y burlas propias.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-cream" id="reglas" aria-labelledby="reglas-title">
+        <div class="wrap">
+          <header class="section-head reveal">
+            <h2 id="reglas-title">Fácil de agarrar, difícil de soltar</h2>
+            <p class="lede">Todo se juega con teclado. La primera ronda explica el corral; la segunda ya se pelea en serio.</p>
+          </header>
+
+          <div class="rules-layout">
+            <div class="controls-card reveal">
+              <table>
+                <caption class="sr-only">Controles por jugador</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Acción</th>
+                    <th scope="col"><span class="tag tag-p1">P1</span></th>
+                    <th scope="col"><span class="tag tag-p2">P2</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row">Mover</th><td><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></td><td><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></td></tr>
+                  <tr><th scope="row">Saltar / riendas</th><td><kbd>Espacio</kbd></td><td><kbd>Shift</kbd></td></tr>
+                  <tr><th scope="row">Atacar</th><td><kbd>J</kbd></td><td><kbd>Enter</kbd></td></tr>
+                  <tr><th scope="row">Pausa</th><td><kbd>Esc</kbd> o <kbd>P</kbd></td><td><kbd>Esc</kbd> o <kbd>P</kbd></td></tr>
+                  <tr><th scope="row">Silencio</th><td><kbd>M</kbd></td><td><kbd>M</kbd></td></tr>
+                </tbody>
+              </table>
+              <p class="controls-note">El botón de sonido del HUD hace lo mismo que <kbd>M</kbd>. La preferencia se guarda en el navegador.</p>
+            </div>
+
+            <ol class="rules-list reveal">
+              <li>
+                <h3>Golpea con el guante de resorte</h3>
+                <p>Recarga en 1.5 segundos. Si fallas, pierdes 10% de equilibrio y quedas expuesto un instante.</p>
+              </li>
+              <li>
+                <h3>Usa las vallas y las pacas</h3>
+                <p>Chocar a buena velocidad rebota y resta equilibrio. El rebote también se puede buscar.</p>
+              </li>
+              <li>
+                <h3>Aletea y pisa desde el aire</h3>
+                <p>El aleteo reduce la fricción. Si aterrizas sobre el rival, le haces daño de pisotón.</p>
+              </li>
+              <li>
+                <h3>Come maíz, pero decide antes</h3>
+                <p>El maíz recupera equilibrio y da turbo. En el menú puedes desactivar la regeneración para una pelea más dura.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-paper" id="personajes" aria-labelledby="personajes-title">
+        <div class="wrap">
+          <header class="section-head reveal">
+            <h2 id="personajes-title">Dieciséis gallinas. Dieciséis chihuahuas.</h2>
+            <p class="lede">
+              La gallina pone la montura; el chihuahua pone el arma y la burla. Todas las armas comparten daño, alcance
+              y recarga: lo que cambia es la actitud.
+            </p>
+          </header>
+
+          <div class="atlas-grid">
+            <figure class="atlas reveal">
+              <figcaption>
+                <span class="atlas-kicker">Gallinas, hoja base</span>
+                <b>De Clásica a Cyberpunk</b>
+                <span class="atlas-meta">8 de 16, PNG transparente</span>
+              </figcaption>
+              <img src="assets/gallinas.webp" alt="Hoja de sprites con ocho gallinas: clásica, guerrera, robot, pirata, maga, zombi, astronauta y cyberpunk" width="1400" height="700" loading="lazy" />
+            </figure>
+            <figure class="atlas reveal">
+              <figcaption>
+                <span class="atlas-kicker">Chihuahuas, hoja base</span>
+                <b>De Clásico a Cyberpunk</b>
+                <span class="atlas-meta">8 de 16, PNG transparente</span>
+              </figcaption>
+              <img src="assets/chihuahuas.webp" alt="Hoja de sprites con ocho chihuahuas: clásico, mexicano, guerrero, pirata, mago, astronauta, zombi y cyberpunk" width="1400" height="700" loading="lazy" />
+            </figure>
+          </div>
+
+          <div class="roster-note reveal">
+            <p>
+              La segunda tanda suma <b>Gorda, Enana, Percherona, Sedosa, Corredora, Coqueta, Vaquera y Emperatriz</b>
+              del lado de las gallinas, y a <b>Diva, Chispa, Gruñón, Bombón, Churro, Lenteja, Capitán y DJ</b> del lado
+              de los jinetes. Las armas van del guante y el martillo a la chancla, el pescado y el megáfono.
+            </p>
+            <p class="fineprint">
+              Las hojas de sprites se generaron con IA y se recortan al cargar el juego. Cada variante conserva paleta,
+              accesorios y expresiones propias; no se reutilizó arte de terceros.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-cream" id="animacion" aria-labelledby="animacion-title">
+        <div class="wrap anim-layout">
+          <div class="anim-copy reveal">
+            <h2 id="animacion-title">Sprites que respiran</h2>
+            <p class="lede">
+              Las patas se separan del cuerpo y alternan apoyo y vuelo. Los ojos parpadean y la cara cambia al atacar,
+              al recibir daño y al ganar la ronda.
+            </p>
+            <p>
+              Con <b>movimiento reducido</b> activo, las poses se quedan quietas y la información de combate sigue ahí:
+              se apagan los rebotes decorativos, no las expresiones.
+            </p>
+            <p class="fineprint">Comparativa de articulación: ilustración original, fase A y fase B del paso.</p>
+          </div>
+          <figure class="shot anim-shot reveal">
+            <div class="shot-frame">
+              <img
+                src="assets/patas.webp"
+                alt="Comparativa de ocho gallinas en tres poses: original, fase A y fase B del paso, con las patas en distinta posición"
+                width="1440"
+                height="1285"
+                loading="lazy"
+              />
+            </div>
+            <figcaption><b>Patas articuladas</b> Cada personaje compone su propio cuadro en un canvas.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section section-ink" id="tecnica" aria-labelledby="tecnica-title">
+        <div class="wrap">
+          <header class="section-head reveal">
+            <h2 id="tecnica-title">Todo el arte se genera por código</h2>
+            <p class="lede">
+              Three.js dibuja el corral, Canvas 2D compone a los luchadores y Web Audio sintetiza la música y los
+              efectos. Sin modelos externos, sin archivos de audio, sin backend.
+            </p>
+          </header>
+
+          <div class="tech-layout">
+            <ul class="tech-list reveal" role="list">
+              <li><b>Corral 3D</b> con geometría fusionada por material, sombras direccionales y tone mapping.</li>
+              <li><b>Física propia</b> de aceleración, derrape, salto, rebote, empujes y pisotón.</li>
+              <li><b>Cámara anclada</b> al ruedo que calcula el encuadre según la pantalla y conserva el borde visible.</li>
+              <li><b>32 sprites</b> con patas articuladas, parpadeo y expresiones por estado de combate.</li>
+              <li><b>Cero dependencias de arte</b>: los atlas son las únicas imágenes y el audio es un sintetizador.</li>
+            </ul>
+            <div class="tech-side reveal">
+              <ul class="chips" role="list">
+                <li>Three.js</li>
+                <li>Vite</li>
+                <li>Canvas 2D</li>
+                <li>Web Audio API</li>
+                <li>Node SEA</li>
+              </ul>
+              <a class="arrow-link" href="https://github.com/neshack/chihuahua-burritas/blob/main/docs/ARQUITECTURA.md">
+                Leer la arquitectura <span aria-hidden="true">➜</span>
+              </a>
+              <p class="fineprint">El ejecutable de Linux se empaqueta con Node SEA y un lanzador que abre el juego en Chrome, Chromium o Brave.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-paper" id="jugar" aria-labelledby="jugar-title">
+        <div class="wrap">
+          <header class="section-head reveal">
+            <h2 id="jugar-title">Elige cómo jugar</h2>
+            <p class="lede">La versión web no instala nada. El ejecutable de Linux lleva Node incluido y abre una ventana propia.</p>
+          </header>
+
+          <div class="play-grid">
+            <article class="play-card reveal">
+              <span class="play-tag">En el navegador</span>
+              <h3>Juega en línea</h3>
+              <p>Se juega con teclado y WebGL. Ideal para una partida rápida sin descargar nada.</p>
+              <a class="btn btn-primary" href="jugar/">Jugar ahora <span aria-hidden="true">➜</span></a>
+            </article>
+            <article class="play-card reveal">
+              <span class="play-tag">Linux x86-64</span>
+              <h3>Descarga el ejecutable</h3>
+              <p>Un archivo de unos 150 MB con Node y el lanzador incluidos. Necesita entorno gráfico y un navegador instalado.</p>
+              <a class="btn btn-outline" href="https://github.com/neshack/chihuahua-burritas/releases">Ir a Releases</a>
+            </article>
+          </div>
+
+          <div class="code-card reveal">
+            <div class="code-head">
+              <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span>Desde el código fuente</span>
+            </div>
+            <pre><code><span class="c-cmd">git clone</span> https://github.com/neshack/chihuahua-burritas.git
+<span class="c-cmd">cd</span> chihuahua-burritas
+<span class="c-cmd">npm install</span>
+<span class="c-cmd">npm run dev</span></code></pre>
+            <p class="fineprint">Requiere Node.js 20 o superior. Para producción: <code>npm run build</code>.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="papel" aria-hidden="true">
+        <svg viewBox="0 0 1200 26" preserveAspectRatio="none" role="presentation">
+          <path d="M0 0h1200v6H0z" fill="#4e3020" />
+          <g fill="#ffc72c">
+            <path d="M0 6l30 16L60 6z" /><path d="M120 6l30 16 30-16z" /><path d="M240 6l30 16 30-16z" />
+            <path d="M360 6l30 16 30-16z" /><path d="M480 6l30 16 30-16z" /><path d="M600 6l30 16 30-16z" />
+            <path d="M720 6l30 16 30-16z" /><path d="M840 6l30 16 30-16z" /><path d="M960 6l30 16 30-16z" />
+            <path d="M1080 6l30 16 30-16z" />
+          </g>
+          <g fill="#d63a74">
+            <path d="M60 6l30 16 30-16z" /><path d="M300 6l30 16 30-16z" /><path d="M540 6l30 16 30-16z" />
+            <path d="M780 6l30 16 30-16z" /><path d="M1020 6l30 16 30-16z" />
+          </g>
+          <g fill="#168f83">
+            <path d="M180 6l30 16 30-16z" /><path d="M420 6l30 16 30-16z" /><path d="M660 6l30 16 30-16z" />
+            <path d="M900 6l30 16 30-16z" /><path d="M1140 6l30 16 30-16z" />
+          </g>
+        </svg>
+      </div>
+      <div class="wrap footer-inner">
+        <div class="footer-brand">
+          <p class="footer-logo">CHIHUAHUA <b>BURRITAS</b></p>
+          <p class="fineprint">Brawler de fiesta en pixel art. Gallinas, chihuahuas y un ruedo que no perdona.</p>
+        </div>
+        <nav class="footer-nav" aria-label="Documentación del proyecto">
+          <a href="https://github.com/neshack/chihuahua-burritas">Repositorio</a>
+          <a href="https://github.com/neshack/chihuahua-burritas/blob/main/docs/ARQUITECTURA.md">Arquitectura</a>
+          <a href="https://github.com/neshack/chihuahua-burritas/blob/main/docs/CONTROLES-Y-REGLAS.md">Controles y reglas</a>
+          <a href="https://github.com/neshack/chihuahua-burritas/blob/main/docs/PERSONAJES.md">Personajes</a>
+          <a href="https://github.com/neshack/chihuahua-burritas/blob/main/docs/DESARROLLO.md">Desarrollo</a>
+        </nav>
+      </div>
+      <div class="wrap footer-bottom">
+        <p>Publicado bajo licencia MIT. El código, los sprites y el audio se pueden estudiar y reutilizar citando la autoría.</p>
+        <p class="footer-stamp">★ FIESTA EDITION ★</p>
+      </div>
+    </footer>
+
+    <script src="main.js" defer></script>
+  </body>
+</html>
